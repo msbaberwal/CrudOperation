@@ -213,6 +213,14 @@
     <Compile Include="Migrations\201806270249247_OverrdeConventionsForContacts.Designer.cs">
       <DependentUpon>201806270249247_OverrdeConventionsForContacts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806270254552_PopulateContact.cs" />
+    <Compile Include="Migrations\201806270254552_PopulateContact.Designer.cs">
+      <DependentUpon>201806270254552_PopulateContact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806270328159_PopulateContact1.cs" />
+    <Compile Include="Migrations\201806270328159_PopulateContact1.Designer.cs">
+      <DependentUpon>201806270328159_PopulateContact1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -303,6 +311,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806270249247_OverrdeConventionsForContacts.resx">
       <DependentUpon>201806270249247_OverrdeConventionsForContacts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806270254552_PopulateContact.resx">
+      <DependentUpon>201806270254552_PopulateContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806270328159_PopulateContact1.resx">
+      <DependentUpon>201806270328159_PopulateContact1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
