@@ -6,6 +6,8 @@ namespace ContactInformation.Models
     {
         public int Id { get; set; }
 
+        public ApplicationUser User { get; set; }
+
         [Required]
         [StringLength(255)]
         public string FirstName { get; set; }
