@@ -9,6 +9,9 @@ namespace ContactInformation.Models
         public ApplicationUser User { get; set; }
 
         [Required]
+        public string UserId { get; set; }
+
+        [Required]
         [StringLength(255)]
         public string FirstName { get; set; }
 
@@ -21,6 +24,7 @@ namespace ContactInformation.Models
         public string EmailId { get; set; }
 
         [Required]
+        [StringLength(255)]
         public string PhoneNumber { get; set; }
 
         public bool Status { get; set; }

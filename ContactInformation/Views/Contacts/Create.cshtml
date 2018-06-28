@@ -1,27 +1,37 @@
 ﻿@model ContactInformation.ViewModel.ContactFormViewModel
 @{
     ViewBag.Title = "Create";
- }
-<form>
+}
+@using (Html.BeginForm("Create", "Contacts"))
+{
     <div class="form-group">
         @Html.LabelFor(m => m.FirstName)
-        @Html.TextBoxFor(m => m.FirstName, new { @class ="form-control" })
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.LastName)
-        @Html.TextBoxFor(m => m.LastName, new { @class ="form-control" })
+        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.EmailId)
-        @Html.TextBoxFor(m => m.EmailId, new { @class ="form-control" })
+        @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.PhoneNumber)
-        @Html.TextBoxFor(m => m.PhoneNumber, new { @class ="form-control" })
+        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Status)
-        @Html.TextBoxFor(m => m.Status, new { @class ="form-control" })
+        
+            @Html.RadioButtonFor(m => m.Status, true, new { @class = "radio-inline", id = "1" })
+            @Html.LabelFor(m => m.Status, "Active")
+            @Html.RadioButtonFor(m => m.Status, false, new { @class = "radio-inline", id = "2" })
+            @Html.LabelFor(m => m.Status, "InActive")
+            @*<span>InActive</span>*@
+        @*@Html.LabelFor(m => m.Status)
+        @Html.RadioButtonFor(m => m.Status, 2, new { id = "rbActive" })
+        @Html.Label("rbActive", "Active")
+        @Html.RadioButtonFor(m => m.Status, 1, new { id = "rbInActive" })
+        @Html.Label("rbInActive", "Inactive")*@
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
-</form>
+}

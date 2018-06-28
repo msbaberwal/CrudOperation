@@ -226,6 +226,14 @@
     <Compile Include="Migrations\201806271610536_OverrdeConventionsForContacts1.Designer.cs">
       <DependentUpon>201806271610536_OverrdeConventionsForContacts1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806280414549_AddforeignkeytoContactsTable.cs" />
+    <Compile Include="Migrations\201806280414549_AddforeignkeytoContactsTable.Designer.cs">
+      <DependentUpon>201806280414549_AddforeignkeytoContactsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806280420307_AddforeignkeytoContactsTable1.cs" />
+    <Compile Include="Migrations\201806280420307_AddforeignkeytoContactsTable1.Designer.cs">
+      <DependentUpon>201806280420307_AddforeignkeytoContactsTable1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -327,6 +335,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806271610536_OverrdeConventionsForContacts1.resx">
       <DependentUpon>201806271610536_OverrdeConventionsForContacts1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806280414549_AddforeignkeytoContactsTable.resx">
+      <DependentUpon>201806280414549_AddforeignkeytoContactsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806280420307_AddforeignkeytoContactsTable1.resx">
+      <DependentUpon>201806280420307_AddforeignkeytoContactsTable1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
