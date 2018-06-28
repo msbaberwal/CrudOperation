@@ -1,16 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ContactInformation.Models;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ContactInformation.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public HomeController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var listofContacts = _context.Contacts.ToList();
+
+            return View(listofContacts);
         }
 
         public ActionResult About()

@@ -234,8 +234,11 @@
     <Compile Include="Migrations\201806280420307_AddforeignkeytoContactsTable1.Designer.cs">
       <DependentUpon>201806280420307_AddforeignkeytoContactsTable1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806280512376_AddNameToApplicationUser.cs" />
+    <Compile Include="Migrations\201806280512376_AddNameToApplicationUser.Designer.cs">
+      <DependentUpon>201806280512376_AddNameToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -243,6 +246,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ContactFormViewModel.cs" />
+    <Compile Include="ViewModel\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="ViewModel\ExternalLoginListViewModel.cs" />
+    <Compile Include="ViewModel\ForgotPasswordViewModel.cs" />
+    <Compile Include="ViewModel\ForgotViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\RegisterViewModel.cs" />
+    <Compile Include="ViewModel\ResetPasswordViewModel.cs" />
+    <Compile Include="ViewModel\SendCodeViewModel.cs" />
+    <Compile Include="ViewModel\VerifyCodeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -341,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806280420307_AddforeignkeytoContactsTable1.resx">
       <DependentUpon>201806280420307_AddforeignkeytoContactsTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806280512376_AddNameToApplicationUser.resx">
+      <DependentUpon>201806280512376_AddNameToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

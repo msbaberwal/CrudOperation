@@ -24,6 +24,11 @@ namespace ContactInformation.Controllers
         [HttpPost]
         public ActionResult Create(ContactFormViewModel contactViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Create", contactViewModel);
+            }
+
             var contact = new Contact
             {
                 UserId = User.Identity.GetUserId(),
