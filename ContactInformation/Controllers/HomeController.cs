@@ -13,6 +13,7 @@ namespace ContactInformation.Controllers
             _context = new ApplicationDbContext();
         }
 
+        [Authorize]
         public ActionResult Index()
         {
             var listofContacts = _context.Contacts.ToList();
@@ -20,13 +21,7 @@ namespace ContactInformation.Controllers
             return View(listofContacts);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
+        [Authorize]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

@@ -3,9 +3,67 @@
     ViewBag.Title = "Home Page";
 }
 
-<ul>
-    @foreach (var contact in Model)
-    {
-        <li>@contact.FirstName @contact.LastName @contact.EmailId @contact.PhoneNumber @contact.Status</li>
-    }
-</ul>
+<ul class="list-group"></ul>
+
+<div class="table-responsive">
+    <table class="table table-responsive table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">EmailId</th>
+            <th scope="col">PhoneNumber</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        @foreach (var contact in Model)
+        {
+            <tbody>
+                <tr>
+                    <th scope="row"></th>
+                    <td>@contact.FirstName</td>
+                    <td>@contact.LastName</td>
+                    <td>@contact.EmailId</td>
+                    <td>@contact.PhoneNumber</td>
+                    <td>@contact.Status</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Contacts", new { id = contact.Id }, null)
+                    </td>
+                    <td>
+                        <a href="#" class="js-cancel-contact" data-contact-id="@contact.Id">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+
+</div>
+
+@section scripts
+{
+
+    <script>
+        $(document).ready(function() {
+            $(".js-cancel-contact").click(function(e) {
+                var link = $(e.target);
+
+                if (confirm("Are you sure you want to delete this contact ?")) {
+                    $.ajax({
+                            url: "/Api/contacts/" + link.attr("data-contact-id"),
+                            method: "DELETE"
+                        })
+                        .done(function() {
+                            alert("Deleted successfully !");
+                            window.location.href = '/home/index';
+                        })
+                        .fail(function() {
+                            alert("somethings wrong !");
+                        });
+                }
+            });
+        });
+    </script>
+}

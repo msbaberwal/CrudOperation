@@ -1,11 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Antlr.Runtime.Misc;
+using ContactInformation.Controllers;
+using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
+using System.Web.Mvc;
 
 namespace ContactInformation.ViewModel
 {
     public class ContactFormViewModel
     {
+        public int Id { get; set; }
         [Required]
-
+        
         public string FirstName { get; set; }
 
         [Required]
@@ -22,5 +27,22 @@ namespace ContactInformation.ViewModel
         [Required]
         public bool Status { get; set; }
 
+        public string Heading { get; set; }
+
+        public string Action
+        {
+            get
+            {
+                Expression<Func<ContactsController, ActionResult>> update =
+                    (c => c.Update(this));
+                Expression<Func<ContactsController, ActionResult>> create =
+                    (c => c.Create(this));
+
+                var action = (Id != 0) ? update : create;
+                return (action.Body as MethodCallExpression).Method.Name;
+
+            }
+
+        }
     }
 }

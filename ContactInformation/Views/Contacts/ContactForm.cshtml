@@ -1,9 +1,16 @@
 ﻿@model ContactInformation.ViewModel.ContactFormViewModel
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = Model.Heading;
 }
-@using (Html.BeginForm("Create", "Contacts"))
+
+<h2>@Model.Heading</h2>
+
+@using (Html.BeginForm(Model.Action, "Contacts"))
 {
+    <p class="alert alert-info">All fields are <strong>required</strong></p>
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+
     <div class="form-group">
         @Html.LabelFor(m => m.FirstName)
         @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
@@ -25,22 +32,11 @@
         @Html.ValidationMessageFor(m => m.PhoneNumber)
     </div>
     <div class="form-group">
-        
-            @Html.RadioButtonFor(m => m.Status, true, new { @class = "radio-inline", id = "1" })
-            @Html.LabelFor(m => m.Status, "Active")
-            @Html.RadioButtonFor(m => m.Status, false, new { @class = "radio-inline", id = "2" })
-            @Html.LabelFor(m => m.Status, "InActive")
 
-            @*<span>InActive</span>*@
-        @*@Html.LabelFor(m => m.Status)
-        @Html.RadioButtonFor(m => m.Status, 2, new { id = "rbActive" })
-        @Html.Label("rbActive", "Active")
-        @Html.RadioButtonFor(m => m.Status, 1, new { id = "rbInActive" })
-        @Html.Label("rbInActive", "Inactive")*@
+        @Html.RadioButtonFor(m => m.Status, true, new { @class = "radio-inline", id = "1" })
+        @Html.LabelFor(m => m.Status, "Active")
+        @Html.RadioButtonFor(m => m.Status, false, new { @class = "radio-inline", id = "2" })
+        @Html.LabelFor(m => m.Status, "InActive")
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-}
-
-@section scripts{
-    @Scripts.Render("~/bundles/jqueryval")
+        <button type="submit" class="btn btn-primary">Save</button>
 }
