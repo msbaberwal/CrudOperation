@@ -1,6 +1,6 @@
-﻿using System.Data.Entity;
-using ContactInformation.Core.Models;
+﻿using ContactInformation.Core.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace ContactInformation.Persistence
 {
@@ -17,5 +17,7 @@ namespace ContactInformation.Persistence
         {
             return new ApplicationDbContext();
         }
+
+
     }
 }
