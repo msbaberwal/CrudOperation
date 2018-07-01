@@ -31,9 +31,9 @@ namespace ContactInformation.Controllers.Api
 
                 try
                 {
-                    var contact = _unitofWork.Contacts.GetSingleContact(id, userid);
-                    _context.Contacts.Remove(contact);
-                    _context.SaveChanges();
+                    var contact = _unitofWork.Contacts.FindContactUsingId(id);
+                    _unitofWork.Contacts.Remove(contact);
+                    _unitofWork.Complete();
                 }
                 catch (Exception e)
                 {

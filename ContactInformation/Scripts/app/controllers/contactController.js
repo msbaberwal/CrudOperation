@@ -1,4 +1,4 @@
-﻿var ContactsController = function (ContactsService) {
+﻿var ContactsController = function(ContactsService) {
 
     var init = function () {
         $(".js-cancel-contact").click(deleteContact);

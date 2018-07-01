@@ -8,7 +8,7 @@ namespace ContactInformation
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                "~/Scripts/app/serices/contactServices.js",
+                "~/Scripts/app/services/contactServices.js",
                 "~/Scripts/app/controllers/contactcontroller.js",
                  "~/Scripts/app/app.js"
                 ));

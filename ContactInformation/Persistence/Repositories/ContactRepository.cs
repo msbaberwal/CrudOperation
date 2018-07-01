@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using ContactInformation.Core.Models;
+﻿using ContactInformation.Core.Models;
 using ContactInformation.Core.Repositories;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ContactInformation.Persistence.Repositories
 {
@@ -12,6 +12,11 @@ namespace ContactInformation.Persistence.Repositories
         public ContactRepository(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        public Contact FindContactUsingId(int id)
+        {
+            return _context.Contacts.Find(id);
         }
 
         public Contact GetSingleContact(int id, string userid)
@@ -28,6 +33,11 @@ namespace ContactInformation.Persistence.Repositories
         public void Add(Contact contact)
         {
             _context.Contacts.Add(contact);
+
+        }
+        public void Remove(Contact contact)
+        {
+            _context.Contacts.Remove(contact);
 
         }
     }
