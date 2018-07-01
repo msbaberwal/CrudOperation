@@ -1,7 +1,7 @@
-﻿using ContactInformation.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ContactInformation.Core.Models;
 
-namespace ContactInformation.ViewModel
+namespace ContactInformation.Core.ViewModel
 {
     public class ContactViewModel
     {

@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -77,6 +81,30 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Factory, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Factory.3.2.1.0\lib\net45-full\Ninject.Extensions.Factory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.WebApi.3.2.1.0\lib\net45-full\Ninject.Web.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -142,6 +170,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -205,6 +237,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -216,64 +249,68 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806270205115_InitialModel.cs" />
-    <Compile Include="Migrations\201806270205115_InitialModel.Designer.cs">
+    <Compile Include="Persistence\Migrations\201806270205115_InitialModel.cs" />
+    <Compile Include="Persistence\Migrations\201806270205115_InitialModel.Designer.cs">
       <DependentUpon>201806270205115_InitialModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806270225323_CreateContactTable.cs" />
-    <Compile Include="Migrations\201806270225323_CreateContactTable.Designer.cs">
+    <Compile Include="Persistence\Migrations\201806270225323_CreateContactTable.cs" />
+    <Compile Include="Persistence\Migrations\201806270225323_CreateContactTable.Designer.cs">
       <DependentUpon>201806270225323_CreateContactTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806270249247_OverrdeConventionsForContacts.cs" />
-    <Compile Include="Migrations\201806270249247_OverrdeConventionsForContacts.Designer.cs">
+    <Compile Include="Persistence\Migrations\201806270249247_OverrdeConventionsForContacts.cs" />
+    <Compile Include="Persistence\Migrations\201806270249247_OverrdeConventionsForContacts.Designer.cs">
       <DependentUpon>201806270249247_OverrdeConventionsForContacts.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806270254552_PopulateContact.cs" />
-    <Compile Include="Migrations\201806270254552_PopulateContact.Designer.cs">
+    <Compile Include="Persistence\Migrations\201806270254552_PopulateContact.cs" />
+    <Compile Include="Persistence\Migrations\201806270254552_PopulateContact.Designer.cs">
       <DependentUpon>201806270254552_PopulateContact.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806270328159_PopulateContact1.cs" />
-    <Compile Include="Migrations\201806270328159_PopulateContact1.Designer.cs">
+    <Compile Include="Persistence\Migrations\201806270328159_PopulateContact1.cs" />
+    <Compile Include="Persistence\Migrations\201806270328159_PopulateContact1.Designer.cs">
       <DependentUpon>201806270328159_PopulateContact1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806271610536_OverrdeConventionsForContacts1.cs" />
-    <Compile Include="Migrations\201806271610536_OverrdeConventionsForContacts1.Designer.cs">
+    <Compile Include="Persistence\Migrations\201806271610536_OverrdeConventionsForContacts1.cs" />
+    <Compile Include="Persistence\Migrations\201806271610536_OverrdeConventionsForContacts1.Designer.cs">
       <DependentUpon>201806271610536_OverrdeConventionsForContacts1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806280414549_AddforeignkeytoContactsTable.cs" />
-    <Compile Include="Migrations\201806280414549_AddforeignkeytoContactsTable.Designer.cs">
+    <Compile Include="Persistence\Migrations\201806280414549_AddforeignkeytoContactsTable.cs" />
+    <Compile Include="Persistence\Migrations\201806280414549_AddforeignkeytoContactsTable.Designer.cs">
       <DependentUpon>201806280414549_AddforeignkeytoContactsTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806280420307_AddforeignkeytoContactsTable1.cs" />
-    <Compile Include="Migrations\201806280420307_AddforeignkeytoContactsTable1.Designer.cs">
+    <Compile Include="Persistence\Migrations\201806280420307_AddforeignkeytoContactsTable1.cs" />
+    <Compile Include="Persistence\Migrations\201806280420307_AddforeignkeytoContactsTable1.Designer.cs">
       <DependentUpon>201806280420307_AddforeignkeytoContactsTable1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806280512376_AddNameToApplicationUser.cs" />
-    <Compile Include="Migrations\201806280512376_AddNameToApplicationUser.Designer.cs">
+    <Compile Include="Persistence\Migrations\201806280512376_AddNameToApplicationUser.cs" />
+    <Compile Include="Persistence\Migrations\201806280512376_AddNameToApplicationUser.Designer.cs">
       <DependentUpon>201806280512376_AddNameToApplicationUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806290545527_AddisCanceltocontact.cs" />
-    <Compile Include="Migrations\201806290545527_AddisCanceltocontact.Designer.cs">
+    <Compile Include="Persistence\Migrations\201806290545527_AddisCanceltocontact.cs" />
+    <Compile Include="Persistence\Migrations\201806290545527_AddisCanceltocontact.Designer.cs">
       <DependentUpon>201806290545527_AddisCanceltocontact.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\Contact.cs" />
-    <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Persistence\Migrations\Configuration.cs" />
+    <Compile Include="Persistence\ApplicationDbContext.cs" />
+    <Compile Include="Core\Models\Contact.cs" />
+    <Compile Include="Core\Models\ApplicationUser.cs" />
+    <Compile Include="Core\ViewModel\ManageViewModels.cs" />
+    <Compile Include="Core\IUnitofWork.cs" />
+    <Compile Include="Persistence\UnitofWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Persistence\Repositories\ContactRepository.cs" />
+    <Compile Include="Core\Repositories\IContactRepository.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModel\ContactFormViewModel.cs" />
-    <Compile Include="ViewModel\ContactViewModel.cs" />
-    <Compile Include="ViewModel\ExternalLoginConfirmationViewModel.cs" />
-    <Compile Include="ViewModel\ExternalLoginListViewModel.cs" />
-    <Compile Include="ViewModel\ForgotPasswordViewModel.cs" />
-    <Compile Include="ViewModel\ForgotViewModel.cs" />
-    <Compile Include="ViewModel\LoginViewModel.cs" />
-    <Compile Include="ViewModel\RegisterViewModel.cs" />
-    <Compile Include="ViewModel\ResetPasswordViewModel.cs" />
-    <Compile Include="ViewModel\SendCodeViewModel.cs" />
-    <Compile Include="ViewModel\VerifyCodeViewModel.cs" />
+    <Compile Include="Core\ViewModel\ContactFormViewModel.cs" />
+    <Compile Include="Core\ViewModel\ContactViewModel.cs" />
+    <Compile Include="Core\ViewModel\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="Core\ViewModel\ExternalLoginListViewModel.cs" />
+    <Compile Include="Core\ViewModel\ForgotPasswordViewModel.cs" />
+    <Compile Include="Core\ViewModel\ForgotViewModel.cs" />
+    <Compile Include="Core\ViewModel\LoginViewModel.cs" />
+    <Compile Include="Core\ViewModel\RegisterViewModel.cs" />
+    <Compile Include="Core\ViewModel\ResetPasswordViewModel.cs" />
+    <Compile Include="Core\ViewModel\SendCodeViewModel.cs" />
+    <Compile Include="Core\ViewModel\VerifyCodeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -352,34 +389,34 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806270205115_InitialModel.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201806270205115_InitialModel.resx">
       <DependentUpon>201806270205115_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806270225323_CreateContactTable.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201806270225323_CreateContactTable.resx">
       <DependentUpon>201806270225323_CreateContactTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806270249247_OverrdeConventionsForContacts.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201806270249247_OverrdeConventionsForContacts.resx">
       <DependentUpon>201806270249247_OverrdeConventionsForContacts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806270254552_PopulateContact.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201806270254552_PopulateContact.resx">
       <DependentUpon>201806270254552_PopulateContact.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806270328159_PopulateContact1.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201806270328159_PopulateContact1.resx">
       <DependentUpon>201806270328159_PopulateContact1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806271610536_OverrdeConventionsForContacts1.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201806271610536_OverrdeConventionsForContacts1.resx">
       <DependentUpon>201806271610536_OverrdeConventionsForContacts1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806280414549_AddforeignkeytoContactsTable.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201806280414549_AddforeignkeytoContactsTable.resx">
       <DependentUpon>201806280414549_AddforeignkeytoContactsTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806280420307_AddforeignkeytoContactsTable1.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201806280420307_AddforeignkeytoContactsTable1.resx">
       <DependentUpon>201806280420307_AddforeignkeytoContactsTable1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806280512376_AddNameToApplicationUser.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201806280512376_AddNameToApplicationUser.resx">
       <DependentUpon>201806280512376_AddNameToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806290545527_AddisCanceltocontact.resx">
+    <EmbeddedResource Include="Persistence\Migrations\201806290545527_AddisCanceltocontact.resx">
       <DependentUpon>201806290545527_AddisCanceltocontact.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

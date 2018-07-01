@@ -1,35 +1,36 @@
-﻿using ContactInformation.Models;
-using ContactInformation.ViewModel;
+﻿using ContactInformation.Persistence;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using ContactInformation.Core;
+using ContactInformation.Core.ViewModel;
 
 namespace ContactInformation.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitofWork _unitofWork;
 
-        public HomeController()
+        public HomeController(IUnitofWork unitofWork)
         {
-            _context = new ApplicationDbContext();
+            _unitofWork = unitofWork;
         }
 
         [Authorize]
         public ActionResult Index(string query = null)
         {
-            var userid = User.Identity.GetUserId();
-
-            var listofContacts = _context.Contacts.ToList().Where(c => c.UserId == userid);
+            var listofContacts = _unitofWork.Contacts.ListofContacts(User.Identity.GetUserId());
 
             if (!String.IsNullOrWhiteSpace(query))
             {
+                query = query.ToUpper();
+
                 listofContacts = listofContacts.Where(c =>
-                    c.FirstName.Contains(query) ||
-                    c.LastName.Contains(query) ||
-                    c.EmailId.Contains(query) ||
-                    c.PhoneNumber.Contains(query)
+                    c.FirstName.ToUpper().Contains(query) ||
+                    c.LastName.ToUpper().Contains(query) ||
+                    c.EmailId.ToUpper().Contains(query) ||
+                    c.PhoneNumber.ToUpper().Contains(query)
                 );
             }
 
@@ -39,14 +40,23 @@ namespace ContactInformation.Controllers
                 SearchTerm = query
             };
 
-
             return View(viewModel);
         }
+
+
 
         [Authorize]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your About page.";
 
             return View();
         }

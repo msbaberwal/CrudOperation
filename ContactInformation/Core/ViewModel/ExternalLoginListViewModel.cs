@@ -1,4 +1,4 @@
-﻿namespace ContactInformation.ViewModel
+﻿namespace ContactInformation.Core.ViewModel
 {
     public class ExternalLoginListViewModel
     {

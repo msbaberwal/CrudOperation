@@ -1,19 +1,19 @@
-﻿using ContactInformation.Models;
-using ContactInformation.ViewModel;
+﻿using ContactInformation.Core;
+using ContactInformation.Core.Models;
+using ContactInformation.Core.ViewModel;
 using Microsoft.AspNet.Identity;
-using System.Data.Entity.Migrations;
-using System.Linq;
+using System;
 using System.Web.Mvc;
 
 namespace ContactInformation.Controllers
 {
     public class ContactsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitofWork _unitofWork;
 
-        public ContactsController()
+        public ContactsController(IUnitofWork unitofWork)
         {
-            _context = new ApplicationDbContext();
+            _unitofWork = unitofWork;
         }
 
         [Authorize]
@@ -29,9 +29,7 @@ namespace ContactInformation.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            var userid = User.Identity.GetUserId();
-            var contact = _context.Contacts.Single(g => g.Id == id &&
-                                                        g.UserId == userid);
+            var contact = _unitofWork.Contacts.GetSingleContact(id, User.Identity.GetUserId());
             var viewModel = new ContactFormViewModel()
             {
                 Heading = "Edit a Contact",
@@ -44,6 +42,7 @@ namespace ContactInformation.Controllers
             };
             return View("ContactForm", viewModel);
         }
+
 
         [Authorize]
         [HttpPost]
@@ -65,8 +64,8 @@ namespace ContactInformation.Controllers
                 PhoneNumber = contactViewModel.PhoneNumber
             };
 
-            _context.Contacts.AddOrUpdate(contact);
-            _context.SaveChanges();
+            _unitofWork.Contacts.Add(contact);
+            _unitofWork.Complete();
 
             return RedirectToAction("Index", "Home");
         }
@@ -74,7 +73,8 @@ namespace ContactInformation.Controllers
         [HttpPost]
         public ActionResult Search(ContactViewModel viewModel)
         {
-            return RedirectToAction("Index", "Home", new {query = viewModel.SearchTerm});
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+            return RedirectToAction("Index", "Home", new { query = viewModel.SearchTerm });
         }
 
         [Authorize]
@@ -87,9 +87,7 @@ namespace ContactInformation.Controllers
                 return View("ContactForm", contactViewModel);
             }
 
-            var userid = User.Identity.GetUserId();
-            var contact = _context.Contacts.Single(c => c.Id == contactViewModel.Id
-                                                        && c.UserId == userid);
+            var contact = _unitofWork.Contacts.GetSingleContact(contactViewModel.Id, User.Identity.GetUserId());
 
             contact.FirstName = contactViewModel.FirstName;
             contact.LastName = contactViewModel.LastName;
@@ -97,7 +95,7 @@ namespace ContactInformation.Controllers
             contact.PhoneNumber = contactViewModel.PhoneNumber;
             contact.Status = contactViewModel.Status;
 
-            _context.SaveChanges();
+            _unitofWork.Complete();
 
             return RedirectToAction("Index", "Home");
         }

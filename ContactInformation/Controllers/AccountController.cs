@@ -1,12 +1,12 @@
-﻿using ContactInformation.Models;
-using ContactInformation.ViewModel;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ContactInformation.Core.Models;
+using ContactInformation.Core.ViewModel;
 
 namespace ContactInformation.Controllers
 {

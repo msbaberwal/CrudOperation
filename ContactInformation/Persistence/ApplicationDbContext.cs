@@ -1,7 +1,8 @@
 ﻿using System.Data.Entity;
+using ContactInformation.Core.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace ContactInformation.Models
+namespace ContactInformation.Persistence
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

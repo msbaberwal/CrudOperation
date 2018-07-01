@@ -1,10 +1,10 @@
-﻿using Antlr.Runtime.Misc;
-using ContactInformation.Controllers;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using Antlr.Runtime.Misc;
+using ContactInformation.Controllers;
 
-namespace ContactInformation.ViewModel
+namespace ContactInformation.Core.ViewModel
 {
     public class ContactFormViewModel
     {

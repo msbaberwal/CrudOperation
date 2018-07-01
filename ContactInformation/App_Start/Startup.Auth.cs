@@ -1,11 +1,12 @@
 ﻿using System;
+using ContactInformation.Core.Models;
+using ContactInformation.Persistence;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using ContactInformation.Models;
 
 namespace ContactInformation
 {

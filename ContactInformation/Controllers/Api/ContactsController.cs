@@ -1,6 +1,7 @@
-﻿using ContactInformation.Models;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using System.Web.Http;
+using ContactInformation.Core.Models;
+using ContactInformation.Persistence;
 
 namespace ContactInformation.Controllers.Api
 {

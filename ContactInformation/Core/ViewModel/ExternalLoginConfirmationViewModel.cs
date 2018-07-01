@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ContactInformation.ViewModel
+namespace ContactInformation.Core.ViewModel
 {
-    public class ForgotViewModel
+    public class ExternalLoginConfirmationViewModel
     {
         [Required] [Display(Name = "Email")] public string Email { get; set; }
     }
