@@ -2,7 +2,7 @@ namespace ContactInformation.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class OverrdeConventionsForContacts1 : DbMigration
     {
         public override void Up()
@@ -11,11 +11,11 @@ namespace ContactInformation.Migrations
             CreateIndex("dbo.Contacts", "User_Id");
             AddForeignKey("dbo.Contacts", "User_Id", "dbo.AspNetUsers", "Id");
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.Contacts", "User_Id", "dbo.AspNetUsers");
-            DropIndex("dbo.Contacts", new[] { "User_Id" });
+            DropIndex("dbo.Contacts", new[] {"User_Id"});
             DropColumn("dbo.Contacts", "User_Id");
         }
     }

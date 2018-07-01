@@ -1,4 +1,7 @@
 ﻿using ContactInformation.Models;
+using ContactInformation.ViewModel;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -14,11 +17,30 @@ namespace ContactInformation.Controllers
         }
 
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string query = null)
         {
-            var listofContacts = _context.Contacts.ToList();
+            var userid = User.Identity.GetUserId();
 
-            return View(listofContacts);
+            var listofContacts = _context.Contacts.ToList().Where(c => c.UserId == userid);
+
+            if (!String.IsNullOrWhiteSpace(query))
+            {
+                listofContacts = listofContacts.Where(c =>
+                    c.FirstName.Contains(query) ||
+                    c.LastName.Contains(query) ||
+                    c.EmailId.Contains(query) ||
+                    c.PhoneNumber.Contains(query)
+                );
+            }
+
+            var viewModel = new ContactViewModel
+            {
+                ListofContacts = listofContacts,
+                SearchTerm = query
+            };
+
+
+            return View(viewModel);
         }
 
         [Authorize]

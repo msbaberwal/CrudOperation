@@ -15,7 +15,6 @@ namespace ContactInformation.Controllers.Api
         }
 
 
-
         [HttpDelete]
         public IHttpActionResult Cancel(int id)
         {

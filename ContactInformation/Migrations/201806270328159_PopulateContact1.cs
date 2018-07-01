@@ -6,8 +6,8 @@ namespace ContactInformation.Migrations
     {
         public override void Up()
         {
-
-            Sql("INSERT INTO CONTACTS (FIRSTNAME,LASTNAME,EMAILID,PHONENUMBER,STATUS) VALUES ('JOHN','BARNETT','JOHNB@GMAIL.COM','8989898989','TRUE')");
+            Sql(
+                "INSERT INTO CONTACTS (FIRSTNAME,LASTNAME,EMAILID,PHONENUMBER,STATUS) VALUES ('JOHN','BARNETT','JOHNB@GMAIL.COM','8989898989','TRUE')");
         }
 
         public override void Down()

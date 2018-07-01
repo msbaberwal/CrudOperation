@@ -2,6 +2,7 @@
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(ContactInformation.Startup))]
+
 namespace ContactInformation
 {
     public partial class Startup

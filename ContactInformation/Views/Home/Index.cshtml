@@ -1,9 +1,22 @@
-﻿@model IEnumerable<ContactInformation.Models.Contact>
+﻿@using System.Web.UI.WebControls
+@model ContactInformation.ViewModel.ContactViewModel
 @{
     ViewBag.Title = "Home Page";
 }
 
 <ul class="list-group"></ul>
+@using (Html.BeginForm("Search", "Contacts"))
+{
+    <div class="form-group">
+        <div id="searchContacts" class="input-group">
+            @Html.TextBoxFor(m => m.SearchTerm, new {@class = "form-control"})
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+            </span>
+        </div>
+    </div>
+}
+
 
 <div class="table-responsive">
     <table class="table table-responsive table-striped">
@@ -19,23 +32,23 @@
             <th scope="col"></th>
         </tr>
         </thead>
-        @foreach (var contact in Model)
+        @foreach (var contact in Model.ListofContacts)
         {
             <tbody>
-                <tr>
-                    <th scope="row"></th>
-                    <td>@contact.FirstName</td>
-                    <td>@contact.LastName</td>
-                    <td>@contact.EmailId</td>
-                    <td>@contact.PhoneNumber</td>
-                    <td>@contact.Status</td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", "Contacts", new { id = contact.Id }, null)
-                    </td>
-                    <td>
-                        <a href="#" class="js-cancel-contact" data-contact-id="@contact.Id">Delete</a>
-                    </td>
-                </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>@contact.FirstName</td>
+                <td>@contact.LastName</td>
+                <td>@contact.EmailId</td>
+                <td>@contact.PhoneNumber</td>
+                <td>@contact.Status</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Contacts", new {id = contact.Id}, null)
+                </td>
+                <td>
+                    <a href="#" class="js-cancel-contact" data-contact-id="@contact.Id">Delete</a>
+                </td>
+            </tr>
             </tbody>
         }
     </table>
@@ -66,4 +79,5 @@
             });
         });
     </script>
+
 }

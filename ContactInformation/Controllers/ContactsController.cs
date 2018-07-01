@@ -17,16 +17,6 @@ namespace ContactInformation.Controllers
         }
 
         [Authorize]
-        public ActionResult Show()
-        {
-            var userid = User.Identity.GetUserId();
-            var contacts = _context.Contacts.
-                Where(g => g.UserId == userid).
-                ToList();
-            return View(contacts);
-        }
-
-        [Authorize]
         public ActionResult Create()
         {
             var viewModel = new ContactFormViewModel()
@@ -41,7 +31,7 @@ namespace ContactInformation.Controllers
         {
             var userid = User.Identity.GetUserId();
             var contact = _context.Contacts.Single(g => g.Id == id &&
-                                                     g.UserId == userid);
+                                                        g.UserId == userid);
             var viewModel = new ContactFormViewModel()
             {
                 Heading = "Edit a Contact",
@@ -81,6 +71,12 @@ namespace ContactInformation.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpPost]
+        public ActionResult Search(ContactViewModel viewModel)
+        {
+            return RedirectToAction("Index", "Home", new {query = viewModel.SearchTerm});
+        }
+
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -92,7 +88,9 @@ namespace ContactInformation.Controllers
             }
 
             var userid = User.Identity.GetUserId();
-            var contact = _context.Contacts.Single(c => c.Id == contactViewModel.Id && c.UserId == userid);
+            var contact = _context.Contacts.Single(c => c.Id == contactViewModel.Id
+                                                        && c.UserId == userid);
+
             contact.FirstName = contactViewModel.FirstName;
             contact.LastName = contactViewModel.LastName;
             contact.EmailId = contactViewModel.EmailId;

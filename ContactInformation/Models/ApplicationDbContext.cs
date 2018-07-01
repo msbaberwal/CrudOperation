@@ -5,7 +5,6 @@ namespace ContactInformation.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-
         public DbSet<Contact> Contacts { get; set; }
 
         public ApplicationDbContext()
